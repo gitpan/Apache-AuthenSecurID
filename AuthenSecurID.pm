@@ -1,14 +1,15 @@
-# $Id: AuthenSecurID.pm,v 1.1 2000/12/05 17:43:50 dberk Exp root $
+# $Id: AuthenSecurID.pm,v 1.1 2001/01/18 20:50:27 root Exp $
 
 package Apache::AuthenSecurID;
 
 use strict;
 use Apache ();
-use Apache::Constants qw(OK AUTH_REQUIRED DECLINED SERVER_ERROR);
+use Apache::Constants qw(OK AUTH_REQUIRED DECLINED REDIRECT SERVER_ERROR);
 use Authen::ACE;
+use Digest::MD5;
 use vars qw($VERSION);
 
-$VERSION = '0.1';
+$VERSION = '0.2';
 
 sub handler {
 	my $r = shift;
@@ -21,10 +22,29 @@ sub handler {
 
 	# Grab the password, or return if HTTP_UNAUTHORIZED
 	my($res,$pass) = $r->get_basic_auth_pw;
-	return $res if $res;
+	$r->log_reason("$res $pass", $r->uri);
+	return $res if $res != OK;
+
+	# Handle Cookie 
+	my $auth_cookie = $r->dir_config("AuthCookie") || "SecurID";
+	my $cookie_path = $r->dir_config("AuthCookiePath") || "/";
+
+	my ( $session_key ) = ( ($r->header_in("Cookie") || "") =~ 
+		/${auth_cookie}=([^;]+)/);
 
 	# Get the user name.
 	my $user = $r->connection->user;
+
+	my $time = int ( time () / 86400 );
+
+	my $ctx = new Digest::MD5;
+	$ctx->add( "$user:$time" );
+	my $digest_key = $ctx->b64digest;
+
+	if ( $session_key eq $digest_key ) {
+			return OK; 
+	}
+
 
 	# SecurID Config Directory 
 	my $VAR_ACE    = $r->dir_config("Auth_SecurID_VAR_ACE") || "/var/ace";
@@ -49,7 +69,7 @@ sub handler {
 		return AUTH_REQUIRED;
 	}
 
-	# Create the radius connection.
+	# Create the SecurID connection.
 	my $ace = Authen::ACE->new(
 		config => $VAR_ACE 
 	);
@@ -64,9 +84,15 @@ sub handler {
 	# Do the actual check.
 	my ( $result, $info ) = $ace->Check ( $pass, $user );
 	if ($result == ACM_OK) {
+		 $r->err_header_out("Set-Cookie" => $auth_cookie . "=" .
+			$digest_key . "; path=" . $cookie_path); 
+		$r->no_cache(1);
+                $r->err_header_out("Pragma", "no-cache");
+                $r->header_out("Location" => $r->uri);
 		return OK;
+		#return REDIRECT;
 	} else {
-		$r->log_reason("Apache::AuthenSecurID failed for user $user",
+		$r->log_reason("Apache::AuthenSecurID failed for user $user $res $VAR_ACE",
 			$r->uri);
 		$r->note_basic_auth_failure;
 		return AUTH_REQUIRED;
@@ -96,20 +122,36 @@ Apache::AuthenSecurID - Authentication via a SecurID server
  PerlAuthenHandler Apache::AuthenSecurID
 
  PerlSetVar Auth_SecurID_VAR_ACE /ace/config/directory 
+ PerlSetVar AuthCookie Name_of_Authentication_Cookie 
+ PerlSetVar AuthCookiePath /path/of/authentication/cookie
 
  require valid-user
 
 =head1 DESCRIPTION
 
-This module allows authentication against a SecurID server.
+This module allows authentication against a SecurID server.  If 
+authentication is successful it sets a cookie with a MD5 hash
+token.  The token expires at midnight local time.
 
 =head1 LIST OF TOKENS
 
 =item *
 Auth_SecurID_VAR_ACE
 
-The location of the of the F<sdconf.rec> file.  It defaults to the
+The location of the F<sdconf.rec> file.  It defaults to the
 directory F</var/ace> if this variable is not set.
+
+=item *
+AuthCookie
+
+The name of the of cookie to be set for the authenticaion token.  
+It defaults to the F<SecurID> if this variable is not set.
+
+=item *
+AuthCookiePath
+
+The path of the of cookie to be set for the authenticaion token.  
+It defaults to F</> if this variable is not set.
 
 =head1 CONFIGURATION
 

@@ -1,4 +1,4 @@
-# $Id: test.pl,v 1.1 2000/12/05 17:43:50 dberk Exp root $
+# $Id: test.pl,v 1.1 2001/01/18 20:50:28 root Exp $
 
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'

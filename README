@@ -1,4 +1,4 @@
-# $Id: README,v 1.1 2000/12/05 17:43:50 dberk Exp root $
+# $Id: README,v 1.1 2001/01/18 20:50:28 root Exp $
 
 In order to install and use this package you will need Perl version
 5.004 or better, mod_perl and Authen::ACE. Installation as usual:
