@@ -1,0 +1,8 @@
+# $Id: Changes,v 1.1 2000/12/05 17:43:50 dberk Exp root $
+
+Revision history for Perl extension Apache::AuthenSecurID.
+
+
+0.01  Tue Nov 5 14:11:38 200
+	- original version; created by db
+

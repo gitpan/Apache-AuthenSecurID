@@ -1,0 +1,8 @@
+# $Id: MANIFEST,v 1.1 2000/12/05 17:43:50 dberk Exp root $
+
+AuthenSecurID.pm
+Changes
+MANIFEST
+Makefile.PL
+README
+test.pl
