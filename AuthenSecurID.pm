@@ -1,4 +1,4 @@
-# $Id: AuthenSecurID.pm,v 1.4 2001/06/22 19:08:36 root Exp $
+# $Id: AuthenSecurID.pm,v 1.6 2002/07/31 16:43:44 Administrator Exp $
 
 package Apache::AuthenSecurID;
 
@@ -82,6 +82,8 @@ Apache::AuthenSecurID - Authentication via a SecurID server
 
  # Configuration in httpd.conf or access.conf 
 
+PerlModule Apache::AuthenSecurID
+
 <Location /secure/directory>
  AuthName SecurID
  AuthType Basic
@@ -93,7 +95,7 @@ Apache::AuthenSecurID - Authentication via a SecurID server
  PerlSetVar AuthUserCookie Name_of_Username_Authentication_Cookie 
  PerlSetVar AuthCookiePath /path/of/authentication/cookie
  PerlSetVar AuthCookieTimeOut 30 
- PerlSetVar AuthCookieHandler /path/of/authentication/handler
+ PerlSetVar Auth_Handler /path/of/authentication/handler
 
  require valid-user
 </Location>
@@ -143,7 +145,7 @@ The time in minute a cookie is valid for.  It is not recommended to set
 below 5.  It defaults to F<30> if this variable is not set.
 
 =item *
-AuthCookieHandler
+Auth_Handler
 
 The path of authentication handler.  This is the URL which request with
 invalid cookie are redirected to.  The handler will prompt for username

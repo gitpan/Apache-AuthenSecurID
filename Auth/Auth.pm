@@ -1,4 +1,4 @@
-# $Id: Auth.pm,v 1.6 2001/06/22 19:09:01 root Exp $
+# $Id: Auth.pm,v 1.9 2002/07/31 16:44:14 Administrator Exp $
 
 package Apache::AuthenSecurID::Auth;
 
@@ -10,7 +10,7 @@ use IO::Socket::INET;
 use Crypt::CBC;
 use vars qw($VERSION);
 
-$VERSION = '0.3';
+$VERSION = '0.4';
 
 
 sub handler {
@@ -55,7 +55,7 @@ sub handler {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -90,13 +90,13 @@ my $head = qq{
 <table>
    <tr>
 	<td colspan=2>
-<table bgcolor=FFFF00 >
+<table bgcolor=cccccc >
    <tr>
 	<td>
-	   <table cellspacing=2 bgcolor=00008B width=100%>
+	   <table cellspacing=2 bgcolor=dddddd width=100%>
 		<tr>
 		   <td align=center>
-			<font size=+2 color=ffffff face="Arial, Helvetica, sans-serif">
+			<font size=+2 color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			SecurID Authorization
 			</b>
@@ -105,7 +105,7 @@ my $head = qq{
 		</tr>
 		<tr>
 		   <td>
-			<font color=ffffff face="Arial, Helvetica, sans-serif">
+			<font color=000000 face="Arial, Helvetica, sans-serif">
 			$message
 			</font>
 		   </td>
@@ -115,10 +115,10 @@ my $head = qq{
    </tr>
    <tr>
 	<td align=right>
-	   <table cellspacing=0 cellpadding=0 bgcolor=00008B width=100%>
+	   <table cellspacing=0 cellpadding=0 bgcolor=dddddd width=100%>
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Username :
 			</b>
@@ -170,7 +170,7 @@ sub check_pin {
 	my $extra_info = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			PIN :
 			</b>
@@ -187,7 +187,7 @@ sub check_pin {
 		</tr>
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			PIN ( Again ) :
 			</b>
@@ -249,6 +249,7 @@ sub Do_ACE {
 
 	$ENV{'VAR_ACE'} = "/opt/ace/data";
 	my $message;
+	my $extra_input;
 	my $result;
 	my %info;
 	my $ace;
@@ -273,7 +274,7 @@ sub Do_ACE {
 	if ( $my_rand ne $return_rand ) {
 		$result = 100;
 	}
-	my ($message,$extra_input)=Ace_Result($result,\%info,$r,$crypt,$params,$username);
+	($message,$extra_input)=Ace_Result($result,\%info,$r,$crypt,$params,$username);
 
 	return ( $message, $extra_input );
 
@@ -318,7 +319,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -343,7 +344,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -367,7 +368,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -390,7 +391,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Next Token Code :
 			</b>
@@ -413,7 +414,7 @@ if ( $result == 0 ) {
 	   $extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			PIN :
 			</b>
@@ -430,7 +431,7 @@ if ( $result == 0 ) {
 		</tr>
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			PIN ( Again ) :
 			</b>
@@ -455,7 +456,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -481,7 +482,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -506,7 +507,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>

@@ -1,9 +1,19 @@
-head	1.4;
+head	1.6;
 access;
 symbols;
-locks; strict;
+locks;
 comment	@# @;
 
+
+1.6
+date	2002.07.31.16.43.44;	author Administrator;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2002.07.30.20.15.39;	author Administrator;	state Exp;
+branches;
+next	1.4;
 
 1.4
 date	2001.06.22.19.08.36;	author root;	state Exp;
@@ -31,12 +41,12 @@ desc
 @
 
 
-1.4
+1.6
 log
-@documentation
+@*** empty log message ***
 @
 text
-@# $Id: AuthenSecurID.pm,v 1.3 2001/06/21 14:50:24 root Exp root $
+@# $Id: AuthenSecurID.pm,v 1.5 2002/07/30 20:15:39 Administrator Exp $
 
 package Apache::AuthenSecurID;
 
@@ -120,6 +130,8 @@ Apache::AuthenSecurID - Authentication via a SecurID server
 
  # Configuration in httpd.conf or access.conf 
 
+PerlModule Apache::AuthenSecurID
+
 <Location /secure/directory>
  AuthName SecurID
  AuthType Basic
@@ -131,7 +143,7 @@ Apache::AuthenSecurID - Authentication via a SecurID server
  PerlSetVar AuthUserCookie Name_of_Username_Authentication_Cookie 
  PerlSetVar AuthCookiePath /path/of/authentication/cookie
  PerlSetVar AuthCookieTimeOut 30 
- PerlSetVar AuthCookieHandler /path/of/authentication/handler
+ PerlSetVar Auth_Handler /path/of/authentication/handler
 
  require valid-user
 </Location>
@@ -181,7 +193,7 @@ The time in minute a cookie is valid for.  It is not recommended to set
 below 5.  It defaults to F<30> if this variable is not set.
 
 =item *
-AuthCookieHandler
+Auth_Handler
 
 The path of authentication handler.  This is the URL which request with
 invalid cookie are redirected to.  The handler will prompt for username
@@ -231,6 +243,35 @@ it and/or modify it under the same terms as Perl itself.
 
 =cut
 
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+# $Id: AuthenSecurID.pm,v 1.4 2001/06/22 19:08:36 root Exp $
+d85 2
+@
+
+
+1.4
+log
+@documentation
+@
+text
+@d1 1
+a1 1
+# $Id: AuthenSecurID.pm,v 1.3 2001/06/21 14:50:24 root Exp root $
+d96 1
+a96 1
+ PerlSetVar AuthCookieHandler /path/of/authentication/handler
+d146 1
+a146 1
+AuthCookieHandler
 @
 
 

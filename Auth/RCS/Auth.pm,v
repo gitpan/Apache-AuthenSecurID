@@ -1,9 +1,24 @@
-head	1.6;
+head	1.9;
 access;
 symbols;
-locks; strict;
+locks;
 comment	@# @;
 
+
+1.9
+date	2002.07.31.16.44.14;	author Administrator;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2002.07.30.20.31.10;	author Administrator;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2002.07.30.20.16.01;	author Administrator;	state Exp;
+branches;
+next	1.6;
 
 1.6
 date	2001.06.22.19.09.01;	author root;	state Exp;
@@ -41,12 +56,12 @@ desc
 @
 
 
-1.6
+1.9
 log
-@docs
+@*** empty log message ***
 @
 text
-@# $Id: Auth.pm,v 1.5 2001/06/22 18:15:02 root Exp root $
+@# $Id: Auth.pm,v 1.8 2002/07/30 20:31:10 Administrator Exp $
 
 package Apache::AuthenSecurID::Auth;
 
@@ -58,7 +73,7 @@ use IO::Socket::INET;
 use Crypt::CBC;
 use vars qw($VERSION);
 
-$VERSION = '0.3';
+$VERSION = '0.4';
 
 
 sub handler {
@@ -103,7 +118,7 @@ sub handler {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -138,13 +153,13 @@ my $head = qq{
 <table>
    <tr>
 	<td colspan=2>
-<table bgcolor=FFFF00 >
+<table bgcolor=cccccc >
    <tr>
 	<td>
-	   <table cellspacing=2 bgcolor=00008B width=100%>
+	   <table cellspacing=2 bgcolor=dddddd width=100%>
 		<tr>
 		   <td align=center>
-			<font size=+2 color=ffffff face="Arial, Helvetica, sans-serif">
+			<font size=+2 color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			SecurID Authorization
 			</b>
@@ -153,7 +168,7 @@ my $head = qq{
 		</tr>
 		<tr>
 		   <td>
-			<font color=ffffff face="Arial, Helvetica, sans-serif">
+			<font color=000000 face="Arial, Helvetica, sans-serif">
 			$message
 			</font>
 		   </td>
@@ -163,10 +178,10 @@ my $head = qq{
    </tr>
    <tr>
 	<td align=right>
-	   <table cellspacing=0 cellpadding=0 bgcolor=00008B width=100%>
+	   <table cellspacing=0 cellpadding=0 bgcolor=dddddd width=100%>
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Username :
 			</b>
@@ -218,7 +233,7 @@ sub check_pin {
 	my $extra_info = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			PIN :
 			</b>
@@ -235,7 +250,7 @@ sub check_pin {
 		</tr>
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			PIN ( Again ) :
 			</b>
@@ -297,6 +312,7 @@ sub Do_ACE {
 
 	$ENV{'VAR_ACE'} = "/opt/ace/data";
 	my $message;
+	my $extra_input;
 	my $result;
 	my %info;
 	my $ace;
@@ -321,7 +337,7 @@ sub Do_ACE {
 	if ( $my_rand ne $return_rand ) {
 		$result = 100;
 	}
-	my ($message,$extra_input)=Ace_Result($result,\%info,$r,$crypt,$params,$username);
+	($message,$extra_input)=Ace_Result($result,\%info,$r,$crypt,$params,$username);
 
 	return ( $message, $extra_input );
 
@@ -366,7 +382,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -391,7 +407,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -415,7 +431,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -438,7 +454,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Next Token Code :
 			</b>
@@ -461,7 +477,7 @@ if ( $result == 0 ) {
 	   $extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			PIN :
 			</b>
@@ -478,7 +494,7 @@ if ( $result == 0 ) {
 		</tr>
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			PIN ( Again ) :
 			</b>
@@ -503,7 +519,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -529,7 +545,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -554,7 +570,7 @@ if ( $result == 0 ) {
 	$extra_input = qq{
 		<tr>
 		   <td>
-			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+			<font  color=000000 face="Arial, Helvetica, sans-serif">
 			<b>
 			Passcode :
 			</b>
@@ -716,6 +732,100 @@ it and/or modify it under the same terms as Perl itself.
 
 =cut
 
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+# $Id: Auth.pm,v 1.7 2002/07/30 20:16:01 Administrator Exp $
+d13 1
+a13 1
+$VERSION = '0.3';
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+# $Id: Auth.pm,v 1.6 2001/06/22 19:09:01 root Exp $
+d58 1
+a58 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d93 1
+a93 1
+<table bgcolor=FFFF00 >
+d96 1
+a96 1
+	   <table cellspacing=2 bgcolor=00008B width=100%>
+d99 1
+a99 1
+			<font size=+2 color=ffffff face="Arial, Helvetica, sans-serif">
+d108 1
+a108 1
+			<font color=ffffff face="Arial, Helvetica, sans-serif">
+d118 1
+a118 1
+	   <table cellspacing=0 cellpadding=0 bgcolor=00008B width=100%>
+d121 1
+a121 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d173 1
+a173 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d190 1
+a190 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d322 1
+a322 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d347 1
+a347 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d371 1
+a371 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d394 1
+a394 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d417 1
+a417 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d434 1
+a434 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d459 1
+a459 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d485 1
+a485 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+d510 1
+a510 1
+			<font  color=ffffff face="Arial, Helvetica, sans-serif">
+@
+
+
+1.6
+log
+@docs
+@
+text
+@d1 1
+a1 1
+# $Id: Auth.pm,v 1.5 2001/06/22 18:15:02 root Exp root $
+d252 1
+d277 1
+a277 1
+	my ($message,$extra_input)=Ace_Result($result,\%info,$r,$crypt,$params,$username);
 @
 
 

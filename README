@@ -1,4 +1,4 @@
-# $Id: README,v 1.2 2001/06/22 19:08:42 root Exp $
+# $Id: README,v 1.4 2002/07/31 16:43:55 Administrator Exp $
 
 In order to install and use this package you will need Perl version
 5.004 or better, mod_perl Crypt::CBC, Crypt::Blowfish and Authen::ACE. 
@@ -25,6 +25,8 @@ NAME
 
 SYNOPSIS
         # Configuration in httpd.conf or access.conf
+	
+       PerlModule Apache::AuthenSecurID
 
        <Location /secure/directory>
         AuthName SecurID
@@ -37,7 +39,7 @@ SYNOPSIS
         PerlSetVar AuthUserCookie Name_of_Username_Authentication_Cookie
         PerlSetVar AuthCookiePath /path/of/authentication/cookie
         PerlSetVar AuthCookieTimeOut 30
-        PerlSetVar AuthCookieHandler /path/of/authentication/handler
+        PerlSetVar Auth_Handler /path/of/authentication/handler
 
         require valid-user
        </Location>
@@ -83,7 +85,7 @@ LIST OF TOKENS
               not recommended to set below 5.  It defaults to 30
               if this variable is not set.
 
-       o AuthCookieHandler
+       o Auth_Handler
               The path of authentication handler.  This is the
               URL which request with invalid cookie are
               redirected to.  The handler will prompt for
