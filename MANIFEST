@@ -1,4 +1,4 @@
-# $Id: MANIFEST,v 1.1 2001/01/18 20:50:27 root Exp $
+# $Id: MANIFEST,v 1.1 2001/06/19 19:45:28 root Exp $
 
 AuthenSecurID.pm
 Changes
@@ -6,3 +6,4 @@ MANIFEST
 Makefile.PL
 README
 test.pl
+ace_initd

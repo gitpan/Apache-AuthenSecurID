@@ -1,9 +1,32 @@
-# $Id: Makefile.PL,v 1.1 2001/06/22 19:08:42 root Exp $
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2001.06.22.19.08.42;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@Created
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# $Id: Makefile.PL,v 1.1 2001/01/18 20:50:27 root Exp $
 
 use ExtUtils::MakeMaker;
 
 sub MY::libscan {
-	my($self,$path) = @_;
+	my($self,$path) = @@_;
 	return '' if $path =~ /RCS/;
 	$path;
 }
@@ -16,3 +39,4 @@ WriteMakefile(
 				Crypt::Blowfish => 2.06 },
 	'dist'		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
 );
+@

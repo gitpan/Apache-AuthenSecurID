@@ -1,4 +1,4 @@
-# $Id: test.pl,v 1.1 2001/06/22 19:08:50 root Exp $
+# $Id: test.pl,v 1.1 2001/06/22 19:09:04 root Exp $
 
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
@@ -10,7 +10,7 @@
 
 BEGIN { $| = 1; print "1..1\n"; }
 END {print "not ok 1\n" unless $loaded;}
-use Apache::AuthenSecurID::Auth;
+use Apache::AuthenSecurID;
 $loaded = 1;
 print "ok 1\n";
 

@@ -1,4 +1,27 @@
-# $Id: Changes,v 1.1 2001/06/19 19:44:13 root Exp $
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2001.06.19.19.44.13;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@Created
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# $Id: Changes,v 1.1 2001/01/18 20:50:27 root Exp $
 
 Revision history for Perl extension Apache::AuthenSecurID.
 
@@ -14,3 +37,4 @@ Revision history for Perl extension Apache::AuthenSecurID.
 	- started using blowfish 
 	- better documentation 
 
+@

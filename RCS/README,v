@@ -1,4 +1,32 @@
-# $Id: README,v 1.2 2001/06/22 19:08:42 root Exp $
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2001.06.22.19.08.42;	author root;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2001.06.19.19.45.55;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@Created
+@
+
+
+1.2
+log
+@docs
+@
+text
+@# $Id: README,v 1.1 2001/06/19 19:45:55 root Exp root $
 
 In order to install and use this package you will need Perl version
 5.004 or better, mod_perl Crypt::CBC, Crypt::Blowfish and Authen::ACE. 
@@ -119,12 +147,12 @@ SEE ALSO
        manpage the Apache::AuthenSecurID::Auth manpage
 
 AUTHORS
-       o mod_perl by Doug MacEachern <dougm@osf.org>
+       o mod_perl by Doug MacEachern <dougm@@osf.org>
 
        o Authen::ACE by Dave Carrigan
-       <Dave.Carrigan@iplenergy.com>
+       <Dave.Carrigan@@iplenergy.com>
 
-       o Apache::AuthenSecurID by David Berk <dberk@lump.org>
+       o Apache::AuthenSecurID by David Berk <dberk@@lump.org>
 
 
 COPYRIGHT
@@ -252,15 +280,15 @@ SEE ALSO
        manpage the Apache::AuthenSecurID::Auth manpage
 
 AUTHORS
-       o mod_perl by Doug MacEachern <dougm@osf.org>
+       o mod_perl by Doug MacEachern <dougm@@osf.org>
 
        o Authen::ACE by Dave Carrigan
-       <Dave.Carrigan@iplenergy.com>
+       <Dave.Carrigan@@iplenergy.com>
 
-       o Apache::AuthenSecurID by David Berk <dberk@lump.org>
+       o Apache::AuthenSecurID by David Berk <dberk@@lump.org>
 
        o Apache::AuthenSecurID::Auth by David Berk
-       <dberk@lump.org>
+       <dberk@@lump.org>
 
 COPYRIGHT
        The Apache::AuthenSecurID::Auth module is free software;
@@ -332,22 +360,40 @@ SEE ALSO
        the Apache::AuthenSecurID::Auth manpage
 
 AUTHORS
-       o mod_perl by Doug MacEachern <dougm@osf.org>
+       o mod_perl by Doug MacEachern <dougm@@osf.org>
 
        o Authen::ACE by Dave Carrigan
-       <Dave.Carrigan@iplenergy.com>
+       <Dave.Carrigan@@iplenergy.com>
 
-       o Apache::AuthenSecurID by David Berk <dberk@lump.org>
+       o Apache::AuthenSecurID by David Berk <dberk@@lump.org>
 
        o Apache::AuthenSecurID::Auth by David Berk
-       <dberk@lump.org>
+       <dberk@@lump.org>
 
 COPYRIGHT
        ace_initd is free software; you can redistribute it and/or
        modify it under the same terms as Perl itself.
 
 
-Copyright 2001, David Berk <dberk@mobygames.com>
+Copyright 2001, David Berk <dberk@@mobygames.com>
 
 The Apache::AuthenSecurID module is free software; you can redistribute 
 it and/or modify it under the same terms as Perl itself.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+# $Id: README,v 1.1 2001/01/18 20:50:28 root Exp $
+d4 2
+a5 1
+5.004 or better, mod_perl and Authen::ACE. Installation as usual:
+d12 339
+a350 1
+Copyright 2000, David Berk <dberk@@lump.org>
+@

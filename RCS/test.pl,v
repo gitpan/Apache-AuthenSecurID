@@ -1,4 +1,27 @@
-# $Id: test.pl,v 1.1 2001/06/22 19:08:50 root Exp $
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2001.06.22.19.08.50;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@Created
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# $Id: test.pl,v 1.1 2001/01/18 20:50:28 root Exp $
 
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
@@ -20,3 +43,4 @@ print "ok 1\n";
 # (correspondingly "not ok 13") depending on the success of chunk 13
 # of the test code):
 
+@
